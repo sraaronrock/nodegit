@@ -9,44 +9,14 @@
     "electron_openssl_static%": "<!(node -p \"process.platform !== 'linux' || process.env.NODEGIT_OPENSSL_STATIC_LINK === '1' ? 1 : 0\")",
     "cxx_version%": "<!(node ./utils/defaultCxxStandard.js <(target))",
     "has_cxxflags%": "<!(node -p \"process.env.CXXFLAGS ? 1 : 0\")",
-    "macOS_deployment_target": "10.11"
+    "macOS_deployment_target": "10.11",
+    # https://github.com/nodejs/node-gyp/issues/2673
+    'openssl_fips': '',
   },
 
   "targets": [
     {
-      "target_name": "acquireOpenSSL",
-        "type": "none",
-        "conditions": [
-        ["<(is_electron) == 1 and <!(node -p \"process.env.npm_config_openssl_dir ? 0 : 1\")", {
-          "actions": [{
-            "action_name": "acquire",
-            "action": ["node", "utils/acquireOpenSSL.js", "<(macOS_deployment_target)"],
-            "inputs": [""],
-            "outputs": ["vendor/openssl"],
-            "message": "Acquiring OpenSSL binaries and headers"
-          }]
-        }]
-      ]
-    },
-    {
-      "target_name": "configureLibssh2",
-      "type": "none",
-      "actions": [{
-        "action_name": "configure",
-        "action": ["node", "utils/configureLibssh2.js"],
-        "inputs": [""],
-        "outputs": [""]
-      }],
-      "hard_dependencies": [
-        "acquireOpenSSL"
-      ]
-    },
-    {
       "target_name": "nodegit",
-
-      "hard_dependencies": [
-        "configureLibssh2"
-      ],
 
       "dependencies": [
         "vendor/libgit2.gyp:libgit2"
@@ -86,7 +56,7 @@
       "include_dirs": [
         "vendor/libv8-convert",
         "vendor/libssh2/include",
-        "<!(node -e \"require('@axosoft/nan')\")"
+        "<!(node -e \"require('nan')\")"
       ],
 
       "cflags": [
@@ -150,7 +120,8 @@
               }]
             ],
             "defines": [
-              "_HAS_EXCEPTIONS=1"
+              "_HAS_EXCEPTIONS=1",
+              "NOMINMAX=1"
             ],
             "msvs_settings": {
               "VCCLCompilerTool": {
@@ -166,9 +137,9 @@
               }
             },
             "libraries": [
-              "winhttp.lib",
               "crypt32.lib",
-              "rpcrt4.lib"
+              "rpcrt4.lib",
+              "secur32.lib"
             ]
           }
         ],
@@ -184,22 +155,28 @@
                 "-std=c++<(cxx_version)"
               ],
             }],
-            ["<(is_electron) == 1 and <(electron_openssl_static) == 1", {
+            ["<(is_electron) == 1", {
+              "conditions": [
+                ["<(electron_openssl_static) == 1", {
+                  "libraries": [
+                    "<(electron_openssl_root)/lib/libssl.a",
+                    "<(electron_openssl_root)/lib/libcrypto.a"
+                  ]
+                }],
+                ["<(electron_openssl_static) != 1", {
+                  "library_dirs": [
+                    "<(electron_openssl_root)/lib"
+                  ],
+                  "libraries": [
+                    "-lcrypto",
+                    "-lssl"
+                  ]
+                }]
+              ],
               "include_dirs": [
                 "<(electron_openssl_root)/include"
               ],
-              "libraries": [
-                # this order is significant on centos7 apparently...
-                "<(electron_openssl_root)/lib/libssl.a",
-                "<(electron_openssl_root)/lib/libcrypto.a"
-              ]
             }],
-            ["<(is_electron) == 1 and <(electron_openssl_static) != 1", {
-              "libraries": [
-                "-lcrypto",
-                "-lssl"
-              ]
-            }]
           ],
         }],
         [

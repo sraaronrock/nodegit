@@ -56,7 +56,7 @@ NAN_METHOD({{ cppClassName }}::{{ cppFunctionName }}) {
         {% if arg.cppClassName == 'Array' %}
           {
             v8::Local<v8::Array> tempArray = v8::Local<v8::Array>::Cast(info[{{ arg.jsArg }}]);
-            baton->{{ arg.name }} = new {{ arg.cType|unPointer }}[tempArray->Length()];
+            baton->{{ arg.name }} = ({{ arg.cType|unPointer }}*)malloc(sizeof({{ arg.cType|unPointer }}) * tempArray->Length());
             for (uint32_t i = 0; i < tempArray->Length(); ++i) {
               auto conversionResult = Configurable{{ arg.arrayElementCppClassName }}::fromJavascript(
                 nodegitContext,
@@ -64,12 +64,13 @@ NAN_METHOD({{ cppClassName }}::{{ cppFunctionName }}) {
               );
 
               if (!conversionResult.result) {
-                delete[] baton->{{ arg.name }};
+                // TODO free previously allocated memory
+                free(baton->{{ arg.name }});
                 return Nan::ThrowError(Nan::New(conversionResult.error).ToLocalChecked());
               }
 
               auto convertedObject = conversionResult.result;
-              cleanupHandles["{{ arg.name }}"] = convertedObject;
+              cleanupHandles[std::string("{{ arg.name }}") + std::to_string(i)] = convertedObject;
               baton->{{ arg.name }}[i] = *convertedObject->GetValue();
             }
           }
@@ -98,7 +99,7 @@ NAN_METHOD({{ cppClassName }}::{{ cppFunctionName }}) {
       baton->{{arg.name}} = ({{ arg.cType }})malloc(sizeof({{ arg.cType|replace '*' '' }}));
       {%if arg.cppClassName == "GitBuf" %}
         baton->{{arg.name}}->ptr = NULL;
-        baton->{{arg.name}}->size = baton->{{arg.name}}->asize = 0;
+        baton->{{arg.name}}->size = baton->{{arg.name}}->reserved = 0;
       {%endif%}
     {%endif%}
   {%endeach%}
@@ -162,14 +163,14 @@ void {{ cppClassName }}::{{ cppFunctionName }}Worker::Execute() {
 
     {% if return.isResultOrError %}
       baton->error_code = result;
-      if (result < GIT_OK && git_error_last() != NULL) {
+      if (result < GIT_OK && git_error_last()->klass != GIT_ERROR_NONE) {
         baton->error = git_error_dup(git_error_last());
       }
 
     {% elsif return.isErrorCode %}
       baton->error_code = result;
 
-      if (result != GIT_OK && git_error_last() != NULL) {
+      if (result != GIT_OK && git_error_last()->klass != GIT_ERROR_NONE) {
         baton->error = git_error_dup(git_error_last());
       }
 

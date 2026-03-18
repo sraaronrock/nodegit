@@ -41,9 +41,11 @@
 .DS_STORE
 .idea
 .clangd
+.nyc_output/
 
 .vscode
 jsconfig.json
 
 test/id_rsa
 test/nodegit-test-rsa
+test/private.ppk

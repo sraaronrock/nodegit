@@ -2,6 +2,8 @@ var buildFlags = require("../utils/buildFlags");
 var spawn = require("child_process").spawn;
 var path = require("path");
 
+const nodePreGypModulePath = require.resolve("@mapbox/node-pre-gyp");
+
 module.exports = function install() {
   console.log("[nodegit] Running install script");
 
@@ -29,11 +31,16 @@ module.exports = function install() {
   }
 
   return new Promise(function(resolve, reject) {
-    var spawnedNodePreGyp = spawn(nodePreGyp, args, {
-      env: Object.assign({}, process.env, {
-        npm_config_node_gyp: path.join(__dirname, "..", "node_modules",
-          "node-gyp", "bin", "node-gyp.js")
-      })
+    const gypPath = path.join(__dirname, "..", "node_modules", "node-gyp", "bin", "node-gyp.js");
+
+    const nodePreGypPath = path.resolve(path.dirname(nodePreGypModulePath), path.join("..", "bin", nodePreGyp));
+    console.log("node-pre-gyp path", nodePreGypPath);
+    var spawnedNodePreGyp = spawn(nodePreGypPath, args, {
+      env: {
+        ...process.env,
+        npm_config_node_gyp: gypPath
+      },
+      shell: process.platform === "win32"
     });
 
     spawnedNodePreGyp.stdout.on("data", function(data) {

@@ -70,6 +70,10 @@
       "owner": "Object",
       "removeString": "OBJ_"
     },
+    "oid": {
+      "JsName": "TYPE",
+      "owner": "Oid"
+    },
     "proxy": {
       "JsName": "PROXY",
       "isMask": false
@@ -158,6 +162,9 @@
           "return": {
             "isErrorCode": true
           }
+        },
+        "git_apply_options_init": {
+          "ignore": true
         }
       }
     },
@@ -792,6 +799,16 @@
         }
       }
     },
+    "commitarray": {
+      "fields": {
+        "commits": {
+          "ignore": true
+        },
+        "count": {
+          "ignore": true
+        }
+      }
+    },
     "config": {
       "selfFreeing": true,
       "functions": {
@@ -1056,6 +1073,7 @@
       "selfFreeing": true
     },
     "config_iterator": {
+      "needsForwardDeclaration": false,
       "selfFreeing": true,
       "fields": {
         "backend": {
@@ -1119,6 +1137,12 @@
           }
         }
       }
+    },
+    "config_backend_memory_options": {
+      "selfFreeing": true,
+      "cDependencies": [
+        "git2/sys/config.h"
+      ]
     },
     "credential": {
       "needsForwardDeclaration": false,
@@ -1501,6 +1525,14 @@
           "JsName": "ERROR"
         }
       }
+    },
+    "email": {
+      "cDependencies": [
+        "git2/sys/email.h"
+      ]
+    },
+    "email_create_options": {
+      "hasConstructor": true
     },
     "fetch": {
       "functions": {
@@ -2575,9 +2607,11 @@
           "ignore": true
         },
         "git_odb_read": {
+          "isAsync": true,
           "cppFunctionName": "OdbRead",
           "args": {
-            "out": {
+            "obj": {
+              "isReturn": true,
               "ownedByThis": true
             }
           }
@@ -2689,7 +2723,18 @@
         },
         "git_oid_fromstrp": {
           "isAsync": false,
-          "jsFunctionName": "fromString"
+          "jsFunctionName": "fromString",
+          "args": {
+            "out": {
+              "isReturn": true
+            },
+            "str": {
+              "shouldAlloc": false
+            }
+          },
+          "return": {
+            "isErrorCode": true
+          }
         },
         "git_oid_nfmt": {
           "ignore": true
@@ -3399,6 +3444,12 @@
             "isErrorCode": true
           }
         },
+        "git_remote_connect_ext": {
+          "isAsync": true
+        },
+        "git_remote_connect_options_init": {
+          "ignore": true
+        },
         "git_remote_disconnect": {
           "isAsync": true,
           "return": {
@@ -3596,6 +3647,11 @@
         }
       }
     },
+    "remote_connect_options": {
+      "dependencies": [
+        "../include/str_array_converter.h"
+      ]
+    },
     "remote_callbacks": {
       "fields": {
         "completion": {
@@ -3628,12 +3684,31 @@
       "isSingleton": true,
       "dependencies": [
         "git2/sys/repository.h",
+        "../include/commit.h",
         "../include/submodule.h",
         "../include/remote.h"
       ],
       "functions": {
         "git_repository__cleanup": {
           "isAsync": true,
+          "return": {
+            "isErrorCode": true
+          }
+        },
+        "git_repository_commit_parents": {
+          "isAsync": true,
+          "args": {
+            "commits": {
+              "shouldAlloc": true,
+              "selfFreeing": true,
+              "isReturn": true,
+              "cppClassName": "Array",
+              "jsClassName": "Array",
+              "arrayElementCppClassName": "GitCommit",
+              "size": "count",
+              "key": "commits"
+            }
+          },
           "return": {
             "isErrorCode": true
           }
@@ -3686,9 +3761,6 @@
             }
           },
           "isAsync": false
-        },
-        "git_repository_init_init_options": {
-          "ignore": true
         },
         "git_repository_init_options_init": {
           "ignore": true
@@ -3995,6 +4067,11 @@
           }
         }
       }
+    },
+    "stash_save_options": {
+      "dependencies": [
+        "../include/str_array_converter.h"
+      ]
     },
     "stdalloc": {
       "ignore": true

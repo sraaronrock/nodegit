@@ -1,5 +1,223 @@
 # Change Log
 
+## <a name="v0-28-0-alpha.36" href="#v0-28-0-alpha-36">v0.28.0-alpha.36</a> [(2025-11-21)](https://github.com/nodegit/nodegit/releases/tag/v0.28.0-alpha.36)
+
+[Full Changelog](https://github.com/nodegit/nodegit/compare/v0.28.0-alpha.35...v0.28.0-alpha.36)
+
+#### Summary of Changes
+ - Use openssl unconditionally for linux electron builds
+ - Fix cross-compiling libssh2
+ - Fix Windows SSH keys, tests, documentation
+ - Add CI tests and Prebuilts for MacOS arm64
+ - Bump tar-fsa to fix security vulnerabilities
+
+#### Merged PRs into NodeGit
+- [Bump tar-fs from 3.0.9 to 3.1.1](https://github.com/nodegit/nodegit/pull/2034)
+- [Use custom electron for non-static builds on linux and fix cross-compilation](https://github.com/nodegit/nodegit/pull/2033)
+- [add macos arm64 tests and prebuilts](https://github.com/nodegit/nodegit/pull/2030)
+
+## <a name="v0-28-0-alpha.35" href="#v0-28-0-alpha-35">v0.28.0-alpha.35</a> [(2025-11-14)](https://github.com/nodegit/nodegit/releases/tag/v0.28.0-alpha.35)
+
+[Full Changelog](https://github.com/nodegit/nodegit/compare/v0.28.0-alpha.34...v0.28.0-alpha.35)
+
+#### Summary of Changes
+ - Bump libgit2 to 1.9.1
+ - Bump OpenSSL to 3.0
+ - Move OpenSSL Packaging to Github Actions
+ - Add arm64 build Support
+
+#### Merged PRs into NodeGit
+- [Bump libgit2 to 1.9.1](https://github.com/nodegit/nodegit/pull/2025)
+- [Bump OpenSSL to 3.0, Move OpenSSL package generation to Github Actions](https://github.com/nodegit/nodegit/pull/2026)
+- [fix: correct macos arch labels](github.com/nodegit/nodegit/pull/2027)
+- [Add Ability to compile for arm64](https://github.com/nodegit/nodegit/pull/2028)
+
+## <a name="v0-28-0-alpha.34" href="#v0-28-0-alpha-34">v0.28.0-alpha.34</a> [(2025-07-23)](https://github.com/nodegit/nodegit/releases/tag/v0.28.0-alpha.34)
+
+[Full Changelog](https://github.com/nodegit/nodegit/compare/v0.28.0-alpha.33...v0.28.0-alpha.34)
+
+#### Summary of Changes
+ - Empty release to fix downstream issues
+
+#### Merged PRs into NodeGit
+- None
+
+## <a name="v0-28-0-alpha.33" href="#v0-28-0-alpha-33">v0.28.0-alpha.33</a> [(2025-06-03)](https://github.com/nodegit/nodegit/releases/tag/v0.28.0-alpha.33)
+
+[Full Changelog](https://github.com/nodegit/nodegit/compare/v0.28.0-alpha.32...v0.28.0-alpha.33)
+
+#### Summary of Changes
+ - fix non-standard import assertion
+ - update tar-fs
+
+#### Merged PRs into NodeGit
+- [Fix Invalid Import Assertion, Bump tar-fs](https://github.com/nodegit/nodegit/pull/2022)
+
+## <a name="v0-28-0-alpha.32" href="#v0-28-0-alpha-32">v0.28.0-alpha.32</a> [(2025-05-28)](https://github.com/nodegit/nodegit/releases/tag/v0.28.0-alpha.32)
+
+[Full Changelog](https://github.com/nodegit/nodegit/compare/v0.28.0-alpha.31...v0.28.0-alpha.32)
+
+#### Summary of Changes
+ - fix windows build on electron
+
+#### Merged PRs into NodeGit
+- [fix electron dependencies again](https://github.com/nodegit/nodegit/pull/2020)
+
+## <a name="v0-28-0-alpha.31" href="#v0-28-0-alpha-31">v0.28.0-alpha.31</a> [(2025-05-27)](https://github.com/nodegit/nodegit/releases/tag/v0.28.0-alpha.31)
+
+[Full Changelog](https://github.com/nodegit/nodegit/compare/v0.28.0-alpha.30...v0.28.0-alpha.31)
+
+#### Summary of Changes
+- bump libgit2 from v1.7.2 to v1.8.4
+- update several npm dependencies for deprecations and vulnerabilities
+
+#### Merged PRs into NodeGit
+- [Dependency/Process Updates](https://github.com/nodegit/nodegit/pull/2019)
+- [Bump libgit2 to 1.8.4, CI Updates](https://github.com/nodegit/nodegit/pull/2018)
+
+## <a name="v0-28-0-alpha.30" href="#v0-28-0-alpha-30">v0.28.0-alpha.30</a> [(2025-02-13)](https://github.com/nodegit/nodegit/releases/tag/v0.28.0-alpha.30)
+
+[Full Changelog](https://github.com/nodegit/nodegit/compare/v0.28.0-alpha.29...v0.28.0-alpha.30)
+
+#### Summary of Changes
+- Fix windows build
+
+#### Merged PRs into NodeGit
+- [define NOMINMAX on windows](https://github.com/nodegit/nodegit/pull/2016)
+
+## <a name="v0-28-0-alpha.29" href="#v0-28-0-alpha-29">v0.28.0-alpha.29</a> [(2025-02-11)](https://github.com/nodegit/nodegit/releases/tag/v0.28.0-alpha.29)
+
+[Full Changelog](https://github.com/nodegit/nodegit/compare/v0.28.0-alpha.28...v0.28.0-alpha.29)
+
+#### Summary of Changes
+- Build on Electron 34+
+- fix use-after-free in Repository::statistics()
+
+#### Merged PRs into NodeGit
+- [Bump @axosoft/nan and add ability to compile for c++20](https://github.com/nodegit/nodegit/pull/2012)
+- [Fix Github Action workflow](https://github.com/nodegit/nodegit/pull/2014)
+
+
+## <a name="v0-28-0-alpha.28" href="#v0-28-0-alpha-28">v0.28.0-alpha.28</a> [(2024-07-01)](https://github.com/nodegit/nodegit/releases/tag/v0.28.0-alpha.28)
+
+[Full Changelog](https://github.com/nodegit/nodegit/compare/v0.28.0-alpha.27...v0.28.0-alpha.28)
+
+#### Summary of changes
+- Build on Electron 31+
+
+#### Merged PRs into NodeGit
+- [Bump nan again for electron 31](https://github.com/nodegit/nodegit/pull/2000)
+
+## <a name="v0-28-0-alpha.27" href="#v0-28-0-alpha-27">v0.28.0-alpha.27</a> [(2024-06-06)](https://github.com/nodegit/nodegit/releases/tag/v0.28.0-alpha.27)
+
+[Full Changelog](https://github.com/nodegit/nodegit/compare/v0.28.0-alpha.26...v0.28.0-alpha.27)
+
+#### Summary of changes
+- Build on Electron 29+
+
+#### Merged PRs into NodeGit
+- [Fix build failure on electron 29+](https://github.com/nodegit/nodegit/pull/1998)
+
+## <a name="v0-28-0-alpha.26" href="#v0-28-0-alpha-26">v0.28.0-alpha.26</a> [(2024-04-19)](https://github.com/nodegit/nodegit/releases/tag/v0.28.0-alpha.26)
+
+[Full Changelog](https://github.com/nodegit/nodegit/compare/v0.28.0-alpha.25...v0.28.0-alpha.26)
+
+#### Summary of changes
+- Fix use-after-free in getRemotes
+
+#### Merged PRs into NodeGit
+- [Fix double-free introduced trying to fix other double-free](https://github.com/nodegit/nodegit/pull/1996)
+
+## <a name="v0-28-0-alpha.25" href="#v0-28-0-alpha-25">v0.28.0-alpha.25</a> [(2024-04-15)](https://github.com/nodegit/nodegit/releases/tag/v0.28.0-alpha.25)
+
+[Full Changelog](https://github.com/nodegit/nodegit/compare/v0.28.0-alpha.24...v0.28.0-alpha.25)
+
+#### Summary of changes
+- Fix use-after-free in getReferences
+
+#### Merged PRs into NodeGit
+- [Don't free the given repo on error in getReferences and getRemotes](https://github.com/nodegit/nodegit/pull/1995)
+
+## <a name="v0-28-0-alpha.24" href="#v0-28-0-alpha-24">v0.28.0-alpha.24</a> [(2024-02-20)](https://github.com/nodegit/nodegit/releases/tag/v0.28.0-alpha.24)
+
+[Full Changelog](https://github.com/nodegit/nodegit/compare/v0.28.0-alpha.23...v0.28.0-alpha.24)
+
+#### Summary of changes
+- Use Collision Detection SHA1 implementation
+- Fix win32 Electron build due to incorrect OpenSSL include path
+
+#### Merged PRs into NodeGit
+- [Use builtin SHA1 for libgit compilation](https://github.com/nodegit/nodegit/pull/1992)
+- [Ensure OpenSSL root included in win32 Electron builds](https://github.com/nodegit/nodegit/pull/1991)
+
+## <a name="v0-28-0-alpha.23" href="#v0-28-0-alpha-23">v0.28.0-alpha.23</a> [(2024-02-14)](https://github.com/nodegit/nodegit/releases/tag/v0.28.0-alpha.23)
+
+[Full Changelog](https://github.com/nodegit/nodegit/compare/v0.28.0-alpha.22...v0.28.0-alpha.23)
+
+#### Summary of changes
+- Bump libgit2 to 1.7.2
+
+#### Merged PRs into NodeGit
+- [Bump libgit2 to 1.7.2](https://github.com/nodegit/nodegit/pull/1990)
+
+## <a name="v0-28-0-alpha.22" href="#v0-28-0-alpha-22">v0.28.0-alpha.22</a> [(2024-02-05)](https://github.com/nodegit/nodegit/releases/tag/v0.28.0-alpha.22)
+
+[Full Changelog](https://github.com/nodegit/nodegit/compare/v0.28.0-alpha.21...v0.28.0-alpha.22)
+
+#### Summary of changes
+- Compatibility with Electron 28
+- NodeGit now requires Node 16+
+
+#### Merged PRs into NodeGit
+- [Fix electron 28 build failure](https://github.com/nodegit/nodegit/pull/1988)
+- [Bump node-gyp to 10.0.1](https://github.com/nodegit/nodegit/pull/1989)
+
+## <a name="v0-28-0-alpha.21" href="#v0-28-0-alpha-21">v0.28.0-alpha.21</a> [(2023-02-10)](https://github.com/nodegit/nodegit/releases/tag/v0.28.0-alpha.21)
+
+[Full Changelog](https://github.com/nodegit/nodegit/compare/v0.28.0-alpha.20...v0.28.0-alpha.21)
+
+#### Summary of changes
+- Update OpenSSL to 1.1.1t
+- Update got + other packages with security vulnerabilities
+- Fix tag.createWithSignature function definition
+
+#### Merged PRs into NodeGit
+- [Bump OpenSSL to 1.1.1t](https://github.com/nodegit/nodegit/pull/1971)
+- [Update got + other locked package versions](https://github.com/nodegit/nodegit/pull/1969)
+- [Fix tag createWithSignature function](https://github.com/nodegit/nodegit/pull/1945)
+
+## <a name="v0-28-0-alpha.20" href="#v0-28-0-alpha-20">v0.28.0-alpha.20</a> [(2022-11-11)](https://github.com/nodegit/nodegit/releases/tag/v0.28.0-alpha.20)
+
+[Full Changelog](https://github.com/nodegit/nodegit/compare/v0.28.0-alpha.19...v0.28.0-alpha.20)
+
+#### Summary of changes
+- Fix electron build issues
+
+#### Merged PRs into NodeGit
+- [Fix electron build issues](https://github.com/nodegit/nodegit/pull/1955)
+
+## <a name="v0-28-0-alpha.19" href="#v0-28-0-alpha-19">v0.28.0-alpha.19</a> [(2022-11-08)](https://github.com/nodegit/nodegit/releases/tag/v0.28.0-alpha.19)
+
+[Full Changelog](https://github.com/nodegit/nodegit/compare/v0.28.0-alpha.18...v0.28.0-alpha.19)
+
+#### Summary of changes
+- OpenSSL bump
+- OpenSSL binaries will be automatically downloaded when building for Electron on Windows and macOS
+- Crash fix on Electron 18+ due to Nan bug
+- Partial stash support
+
+#### Merged PRs into NodeGit
+- [Allow overriding C++ standard](https://github.com/nodegit/nodegit/pull/1953)
+- [Bump OpenSSL to 1.1.1s](https://github.com/nodegit/nodegit/pull/1952)
+- [Fix intermittent crash on Electron 18+](https://github.com/nodegit/nodegit/pull/1951)
+- [type is a call](https://github.com/nodegit/nodegit/pull/1942)
+- [Fix leak in agent](https://github.com/nodegit/nodegit/pull/1947)
+- [Default to using precompiled OpenSSL for Electron](https://github.com/nodegit/nodegit/pull/1949)
+- [Partial stash support](https://github.com/nodegit/nodegit/pull/1948)
+- [Switch CI to macOS-11](https://github.com/nodegit/nodegit/pull/1950)
+- [Preemptively Patch OpenSSL 1.1.1q](https://github.com/nodegit/nodegit/pull/1928)
+- [Add getAllFilepaths function in tree object](https://github.com/nodegit/nodegit/pull/1919)
+
 ## <a name="v0-28-0-alpha.18" href="#v0-28-0-alpha-18">v0.28.0-alpha.18</a> [(2022-05-27)](https://github.com/nodegit/nodegit/releases/tag/v0.28.0-alpha.18)
 
 [Full Changelog](https://github.com/nodegit/nodegit/compare/v0.28.0-alpha.17...v0.28.0-alpha.18)
@@ -3975,7 +4193,3 @@ We have added Node 6 as a supported platform! Going forward we aim to have 1:1 s
 [Full Changelog](https://github.com/nodegit/nodegit/compare/v0.0.1...v0.0.2)
 
 ## <a name="v0-0-1" href="#v0-0-1">v0.0.1</a> [(2011-03-10)](https://github.com/nodegit/nodegit/tree/v0.0.1)
-
-
-
-\* *This Change Log was automatically generated by [github_changelog_generator](https://github.com/skywinder/Github-Changelog-Generator)*
